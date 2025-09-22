@@ -12,23 +12,39 @@ let mainMenu =
 
 const userInput = prompt(mainMenu);
 
-if (userInput === "list") {
-  let names = "";
-  for (let i = 0; i < contacts.length; i++) {
-    let contactSections = contacts[i].split("|");
-    names += i + 1 + " - " + contactSections[0] + "\n";
+while (true) { 
+  if (userInput === "exit") {
+    break;
+  } 
+  else if (userInput === "list") {
+    let names = "";
+    for (let i = 0; i < contacts.length; i++) {
+      let contactSections = contacts[i].split("|");
+      names += i + 1 + " - " + contactSections[0] + "\n";
+    }
+
+    alert(names);
+  } 
+  else if (userInput.toLowerCase().startsWith("get ")) {
+    let input = userInput.substring(4).trim();
+
+    if (!isNaN(input)) {
+      let index = parseInt(input, 10) - 1;
+      if (index >= 0 && index < contacts.length) {
+        let contactSections = contacts[index].split("|");
+        alert(
+          "Name: " + contactSections[0] + "\n" +
+          "Email: " + contactSections[1] + "\n" +
+          "Phone: " + contactSections[2]
+        );
+      } else {
+        alert(`No data for #${input}`);
+      }
+    }
+    else {
+      alert("Invalid command");
+    }
   }
-  alert(names);
-} else if (userInput === "get 1") {
-  for (let i = 0; i < ronaldInfo.length; i++) {
-    alert(ronaldInfo);
-  }
-} else if (userInput === "get 2") {
-  for (let i = 0; i < mcdonaldInfo.length; i++) {
-    alert(mcdonaldInfo);
-  }
-} else if (userInput === "get 3") {
-  for (let i = 0; i < grimaceInfo.length; i++) {
-    alert(grimaceInfo);
-  }
+  break;
 }
+
