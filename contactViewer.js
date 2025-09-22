@@ -13,10 +13,10 @@ let mainMenu =
 const userInput = prompt(mainMenu);
 
 while (true) { 
-  if (userInput === "exit") {
+  if (userInput.toLowerCase() === "exit") {
     break;
   } 
-  else if (userInput === "list") {
+  else if (userInput.toLowerCase() === "list") {
     let names = "";
     for (let i = 0; i < contacts.length; i++) {
       let contactSections = contacts[i].split("|");
